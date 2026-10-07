@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ootls-bin
+_pkgname=ootls
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Inspects remote TLS/SSL certificates, cipher suites, expiration, and SAN domains."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ootls"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ootls')
+conflicts=('ootls')
+source_x86_64=("${url}/releases/download/v${pkgver}/ootls-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ootls-linux-x86_64" "${pkgdir}/usr/bin/ootls"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ootls-uninstall"
+}
